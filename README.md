@@ -114,9 +114,11 @@ python scripts/generate_quality_report.py
 
 Le script charge en priorité `data/processed/openfoodfacts-cleaned.csv` si le fichier existe localement. Sinon, il utilise l'échantillon versionné `data/sample/openfoodfacts-cleaned-sample.csv`.
 
+Le rapport versionné actuel a été généré depuis `data/processed/openfoodfacts-cleaned.csv`, comme l'indique son champ `source_path`. Cette source correspond au dataset nettoyé local ; l'échantillon versionné reste disponible pour relancer la démonstration sans disposer du dataset complet.
+
 Les sorties générées sont :
 
-- `reports/quality_report.json` : structure exploitable par une future interface ;
+- `reports/quality_report.json` : structure exploitée par l'interface locale ;
 - `reports/quality_report.md` : synthèse lisible dans GitHub ;
 - `reports/quality_report.html` : version statique consultable localement.
 
@@ -124,7 +126,7 @@ Le score qualité est volontairement simple. Il combine complétude, colonnes at
 
 ## Interface locale
 
-Une interface Streamlit locale permet de visualiser le rapport qualité généré en phase 2 :
+Une interface Streamlit locale permet de visualiser le rapport qualité généré par le moteur Python :
 
 ![Interface Streamlit Quality Analysis](docs/screenshots/streamlit-quality-dashboard.png)
 
@@ -145,7 +147,7 @@ Fichiers locaux attendus ou générés :
 - `data/raw/openfoodfacts-products.tsv` : dataset brut, non versionné ;
 - `data/processed/openfoodfacts-cleaned.csv` : dataset nettoyé, non versionné ;
 - `data/sample/openfoodfacts-cleaned-sample.csv` : échantillon léger versionné ;
-- `reports/quality_report.json` : rapport qualité structuré ;
+- `reports/quality_report.json` : structure exploitée par l'interface locale ;
 - `reports/quality_report.md` : rapport qualité Markdown ;
 - `reports/quality_report.html` : rapport qualité HTML.
 
@@ -233,8 +235,8 @@ Les tests ne dépendent pas du dataset complet. Ils couvrent :
 - Générer un tableau de synthèse des règles appliquées.
 - Ajouter des tests de non-régression sur un échantillon contrôlé.
 - Extraire davantage de visualisations du notebook vers des fonctions réutilisables.
-- Ajouter une capture réelle de l'interface si elle est générée localement.
+- Améliorer la capture de l'interface après les prochaines évolutions visuelles.
 
 ## Contexte du projet
 
-Ce dépôt reprend un ancien travail de préparation de données et le remet en forme comme projet portfolio Data Science. Il démontre la capacité à traiter une base volumineuse, bruitée et incomplète, puis à construire une démarche analytique claire autour de la qualité nutritionnelle.
+Ce dépôt présente un outil local d'audit data quality appliqué aux données nutritionnelles OpenFoodFacts. Il démontre la capacité à traiter une base volumineuse, bruitée et incomplète, puis à construire une démarche analytique claire, reproductible et lisible autour de la qualité nutritionnelle.

@@ -9,7 +9,7 @@ from quality_analysis.reporting import REQUIRED_REPORT_KEYS
 
 
 def load_quality_report(path: str | Path = QUALITY_REPORT_JSON_PATH) -> dict[str, Any]:
-    """Charge le rapport qualite JSON genere en phase 2."""
+    """Charge le rapport qualite JSON genere par le moteur de reporting."""
     report_path = Path(path)
     if not report_path.exists():
         raise FileNotFoundError(f"Rapport qualite introuvable : {report_path}")

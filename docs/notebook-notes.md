@@ -19,7 +19,7 @@ Il documente la démarche initiale :
 
 ## Positionnement
 
-Le notebook reste exploratoire. La phase 1 extrait uniquement les fonctions stabilisées nécessaires à un pipeline léger et testable.
+Le notebook reste exploratoire. Les fonctions stabilisées utiles au pipeline sont maintenues dans `src/quality_analysis/` pour garder le projet lisible, testable et reproductible.
 
 ## Données
 
