@@ -46,6 +46,7 @@ Les données complètes ne sont pas versionnées, car elles sont volumineuses et
 
 ```text
 .
+|-- app/                         # Interface Streamlit locale
 |-- data/
 |   |-- sample/                  # Echantillon versionné
 |   |-- raw/                     # Dataset brut local non versionné
@@ -56,6 +57,7 @@ Les données complètes ne sont pas versionnées, car elles sont volumineuses et
 |-- scripts/                     # Commandes Python simples
 |-- src/quality_analysis/        # Logique stabilisée et testable
 |-- tests/                       # Tests unitaires légers
+|-- requirements-app.txt
 |-- requirements.txt
 |-- requirements-dev.txt
 `-- README.md
@@ -120,6 +122,22 @@ Les sorties générées sont :
 
 Le score qualité est volontairement simple. Il combine complétude, colonnes attendues, bornes nutritionnelles, doublons et cohérence des Nutri-Grades. Il sert au pilotage technique du nettoyage, pas à une validation scientifique ou réglementaire.
 
+## Interface locale
+
+Une interface Streamlit locale permet de visualiser le rapport qualité généré en phase 2 :
+
+![Interface Streamlit Quality Analysis](docs/screenshots/streamlit-quality-dashboard.png)
+
+```bash
+pip install -r requirements-app.txt
+python scripts/generate_quality_report.py
+streamlit run app/streamlit_app.py
+```
+
+L'interface lit uniquement `reports/quality_report.json`. Elle ne recalcule pas l'analyse depuis le CSV et ne nécessite pas le dataset complet si l'échantillon versionné est disponible.
+
+Cette interface est une démonstration locale portfolio : elle ne fournit pas d'API, ne sert pas de service en production et ne formule aucune promesse santé.
+
 ## Données générées
 
 Fichiers locaux attendus ou générés :
@@ -137,6 +155,12 @@ Fichiers locaux attendus ou générés :
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt -r requirements-dev.txt
+```
+
+Installer uniquement l'interface Streamlit :
+
+```bash
+pip install -r requirements-app.txt
 ```
 
 ## Commandes principales
@@ -157,6 +181,12 @@ Générer le rapport qualité :
 
 ```bash
 python scripts/generate_quality_report.py
+```
+
+Lancer l'interface locale :
+
+```bash
+streamlit run app/streamlit_app.py
 ```
 
 Ouvrir le notebook :
@@ -181,21 +211,23 @@ Les tests ne dépendent pas du dataset complet. Ils couvrent :
 - distribution des Nutri-Grades ;
 - rapports de colonnes attendues ;
 - ANOVA et PCA sur jeux fictifs ;
-- profil dataset, score qualité et génération de rapport.
+- profil dataset, score qualité et génération de rapport ;
+- chargement du rapport et génération des graphiques de visualisation.
 
 ## Limites actuelles
 
 - Le dataset complet doit être récupéré ou conservé localement.
 - Le notebook reste exploratoire et contient plus de visualisations que le package Python.
 - Les règles de bornes sont simples et doivent être documentées si elles évoluent.
-- Le projet ne fournit pas d'API, de dashboard ou de modèle de prédiction en production.
+- L'interface Streamlit est locale et lit un rapport statique.
+- Le projet ne fournit pas d'API, de backend ou de modèle de prédiction en production.
 
 ## Améliorations possibles
 
-- Ajouter une interface Streamlit locale lisant `reports/quality_report.json`.
 - Générer un tableau de synthèse des règles appliquées.
 - Ajouter des tests de non-régression sur un échantillon contrôlé.
 - Extraire davantage de visualisations du notebook vers des fonctions réutilisables.
+- Ajouter une capture réelle de l'interface si elle est générée localement.
 
 ## Contexte du projet
 

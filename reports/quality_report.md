@@ -3,7 +3,7 @@
 ## Metadata
 
 - Source : `data/processed/openfoodfacts-cleaned.csv`
-- Génération : `2026-04-26T03:55:57+00:00`
+- Génération : `2026-04-26T04:07:43+00:00`
 - Version rapport : `1.0`
 
 ## Profil dataset

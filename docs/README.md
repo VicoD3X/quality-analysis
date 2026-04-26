@@ -9,5 +9,6 @@ Ce dossier contient la documentation synthétique du projet Quality Analysis.
 - `data-dictionary.md` : variables principales.
 - `statistical-analysis.md` : analyses statistiques utilisées.
 - `notebook-notes.md` : état du notebook et rôle dans le projet.
+- `streamlit-dashboard.md` : rôle et lancement de l'interface locale.
 
 Les supports historiques sont conservés localement dans `docs/archive/`, mais ils ne sont pas la porte d'entrée du projet.
