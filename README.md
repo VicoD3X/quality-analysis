@@ -183,6 +183,12 @@ Générer le rapport qualité :
 python scripts/generate_quality_report.py
 ```
 
+Régénérer le visuel de synthèse du README :
+
+```bash
+python scripts/generate_readme_overview.py
+```
+
 Lancer l'interface locale :
 
 ```bash
