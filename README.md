@@ -1,0 +1,170 @@
+# Quality Analysis - OpenFoodFacts Nutrition Data Quality
+
+![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-data%20quality-150458?logo=pandas&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-PCA%20%7C%20LDA-F7931E?logo=scikitlearn&logoColor=white)
+![Status](https://img.shields.io/badge/status-MVP-0f766e)
+
+## Présentation du projet
+
+Quality Analysis est un projet Data Science orienté qualité de données nutritionnelles. Il part d'un export OpenFoodFacts volumineux et bruité pour construire une base exploitable, analyser les valeurs nutritionnelles et vérifier la cohérence des Nutri-Grades.
+
+Le projet est volontairement positionné comme un MVP analytique local : il ne s'agit pas d'une application santé en production, ni d'un système de recommandation alimentaire. L'objectif est de montrer une démarche claire de nettoyage, validation, exploration statistique et documentation.
+
+## Aperçu
+
+Le visuel ci-dessous est reconstruit depuis les données locales et résume trois sorties clés : distribution des Nutri-Grades, réduction des valeurs manquantes sur les variables utiles et moyennes nutritionnelles par grade.
+
+![Aperçu qualité OpenFoodFacts](docs/screenshots/quality-overview.png)
+
+## Objectif métier
+
+Le cas d'usage se place du point de vue d'un organisme de santé publique qui souhaite améliorer la qualité d'une base collaborative de produits alimentaires.
+
+Les objectifs principaux sont :
+
+- identifier les colonnes trop incomplètes ;
+- fiabiliser les variables nutritionnelles utiles ;
+- limiter l'impact des valeurs aberrantes ;
+- analyser les liens entre nutriments et Nutri-Grade ;
+- produire une base nettoyée exploitable pour des analyses futures ;
+- documenter les limites et les règles de traitement.
+
+## Source de données
+
+Le dataset brut attendu est un export OpenFoodFacts local :
+
+```text
+data/raw/openfoodfacts-products.tsv
+```
+
+Dans la copie locale auditée, le fichier brut contient environ `320 772` produits et `162` colonnes. Le fichier nettoyé local contient environ `115 804` produits et `30` colonnes.
+
+Les données complètes ne sont pas versionnées, car elles sont volumineuses et reconstruisibles. Le dépôt contient uniquement un petit échantillon dans `data/sample/` pour les tests, les exemples et la lecture rapide.
+
+## Architecture du dépôt
+
+```text
+.
+|-- data/
+|   |-- sample/                  # Echantillon versionné
+|   |-- raw/                     # Dataset brut local non versionné
+|   `-- processed/               # Exports nettoyés locaux non versionnés
+|-- docs/                        # Documentation synthétique
+|-- notebooks/                   # Notebook exploratoire principal
+|-- scripts/                     # Commandes Python simples
+|-- src/quality_analysis/        # Logique stabilisée et testable
+|-- tests/                       # Tests unitaires légers
+|-- requirements.txt
+|-- requirements-dev.txt
+`-- README.md
+```
+
+## Pipeline analytique
+
+La phase 1 extrait une première base Python du notebook existant :
+
+- `loaders.py` charge le brut, le nettoyé ou l'échantillon ;
+- `cleaning.py` applique les règles de nettoyage stabilisées ;
+- `quality_checks.py` produit des rapports de complétude, doublons et bornes ;
+- `analysis.py` regroupe les analyses Nutri-Grade, ANOVA et PCA ;
+- `export.py` centralise les exports CSV.
+
+Le notebook reste la trace exploratoire complète. Le package `src/quality_analysis/` contient uniquement la partie stabilisée et testable.
+
+## Stratégie de nettoyage
+
+Le nettoyage repose sur des règles simples et explicables :
+
+- suppression des colonnes trop incomplètes ;
+- sélection des colonnes nutritionnelles utiles ;
+- normalisation des Nutri-Grades ;
+- contrôle de bornes métier sur les valeurs pour 100 g ;
+- suppression des doublons disponibles ;
+- imputation médiane sur les variables numériques.
+
+Ces règles ne prétendent pas remplacer une validation experte nutritionnelle. Elles donnent une base robuste pour l'analyse exploratoire.
+
+## Analyses statistiques
+
+Le notebook et les modules couvrent plusieurs angles :
+
+- distribution des Nutri-Grades ;
+- moyennes nutritionnelles par grade ;
+- analyse des valeurs manquantes ;
+- PCA pour explorer la structure des variables numériques ;
+- ANOVA pour tester les différences entre groupes Nutri-Grade ;
+- CCA et LDA dans le notebook exploratoire.
+
+Aucun résultat n'est inventé dans la documentation : les chiffres doivent être reconstruits à partir des données locales.
+
+## Données générées
+
+Fichiers locaux attendus ou générés :
+
+- `data/raw/openfoodfacts-products.tsv` : dataset brut, non versionné ;
+- `data/processed/openfoodfacts-cleaned.csv` : dataset nettoyé, non versionné ;
+- `data/sample/openfoodfacts-cleaned-sample.csv` : échantillon léger versionné.
+
+## Installation locale
+
+```bash
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt -r requirements-dev.txt
+```
+
+## Commandes principales
+
+Reconstruire le dataset nettoyé :
+
+```bash
+python scripts/build_clean_dataset.py
+```
+
+Reconstruire l'échantillon versionné depuis le nettoyé local :
+
+```bash
+python scripts/build_sample.py
+```
+
+Ouvrir le notebook :
+
+```bash
+jupyter lab
+```
+
+Lancer les tests :
+
+```bash
+pytest
+```
+
+## Tests
+
+Les tests ne dépendent pas du dataset complet. Ils couvrent :
+
+- suppression des colonnes trop incomplètes ;
+- contrôle de bornes nutritionnelles ;
+- imputation médiane ;
+- distribution des Nutri-Grades ;
+- rapports de colonnes attendues ;
+- ANOVA et PCA sur jeux fictifs.
+
+## Limites actuelles
+
+- Le dataset complet doit être récupéré ou conservé localement.
+- Le notebook reste exploratoire et contient plus de visualisations que le package Python.
+- Les règles de bornes sont simples et doivent être documentées si elles évoluent.
+- Le projet ne fournit pas d'API, de dashboard ou de modèle de prédiction en production.
+
+## Améliorations possibles
+
+- Ajouter un rapport HTML statique de qualité des données.
+- Générer un tableau de synthèse des règles appliquées.
+- Ajouter des tests de non-régression sur un échantillon contrôlé.
+- Extraire davantage de visualisations du notebook vers des fonctions réutilisables.
+
+## Contexte du projet
+
+Ce dépôt reprend un ancien travail de préparation de données et le remet en forme comme projet portfolio Data Science. Il démontre la capacité à traiter une base volumineuse, bruitée et incomplète, puis à construire une démarche analytique claire autour de la qualité nutritionnelle.
