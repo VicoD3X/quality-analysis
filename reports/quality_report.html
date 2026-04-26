@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Rapport qualité OpenFoodFacts</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; color: #172033; }
+    main { max-width: 980px; margin: auto; }
+    section { border: 1px solid #d9e2ec; border-radius: 14px; padding: 18px; margin: 18px 0; }
+    .score { font-size: 42px; font-weight: 800; color: #0f766e; }
+    code { background: #eef4f8; padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Rapport qualité OpenFoodFacts</h1>
+  <section>
+    <h2>Score qualité</h2>
+    <div class="score">99.99/100</div>
+    <ul><li>completeness : 100.0/100</li><li>required_columns : 100.0/100</li><li>numeric_bounds : 100.0/100</li><li>duplicates : 99.96/100</li><li>nutrition_grades : 100.0/100</li></ul>
+  </section>
+  <section>
+    <h2>Profil dataset</h2>
+    <p>Lignes : <code>115804</code></p>
+    <p>Colonnes : <code>30</code></p>
+    <p>Valeurs manquantes globales : <code>0.0%</code></p>
+    <p>Doublons : <code>44</code></p>
+  </section>
+  <section>
+    <h2>Alertes</h2>
+    <ul><li><strong>medium</strong> - Colonne &#x27;carbohydrates_100g&#x27; : 1 valeur(s) hors bornes nutritionnelles.</li><li><strong>medium</strong> - Colonne &#x27;sugars_100g&#x27; : 4 valeur(s) hors bornes nutritionnelles.</li><li><strong>medium</strong> - Colonne &#x27;proteins_100g&#x27; : 1 valeur(s) hors bornes nutritionnelles.</li><li><strong>medium</strong> - 44 doublon(s) détecté(s) (&lt;0.1%).</li></ul>
+  </section>
+  <section>
+    <h2>Limites</h2>
+    <ul><li>Le score qualité est heuristique et non réglementaire.</li><li>Les bornes nutritionnelles restent des contrôles techniques simples.</li><li>Le rapport dépend du fichier local utilisé au moment de la génération.</li><li>L&#x27;échantillon versionné sert à la démonstration, pas à une conclusion métier.</li></ul>
+  </section>
+</main>
+</body>
+</html>

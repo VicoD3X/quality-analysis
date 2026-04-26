@@ -52,6 +52,7 @@ Les données complètes ne sont pas versionnées, car elles sont volumineuses et
 |   `-- processed/               # Exports nettoyés locaux non versionnés
 |-- docs/                        # Documentation synthétique
 |-- notebooks/                   # Notebook exploratoire principal
+|-- reports/                     # Rapports qualité générés
 |-- scripts/                     # Commandes Python simples
 |-- src/quality_analysis/        # Logique stabilisée et testable
 |-- tests/                       # Tests unitaires légers
@@ -62,12 +63,15 @@ Les données complètes ne sont pas versionnées, car elles sont volumineuses et
 
 ## Pipeline analytique
 
-La phase 1 extrait une première base Python du notebook existant :
+Le socle Python extrait une première base réutilisable depuis le notebook existant :
 
 - `loaders.py` charge le brut, le nettoyé ou l'échantillon ;
 - `cleaning.py` applique les règles de nettoyage stabilisées ;
 - `quality_checks.py` produit des rapports de complétude, doublons et bornes ;
 - `analysis.py` regroupe les analyses Nutri-Grade, ANOVA et PCA ;
+- `profiling.py` décrit le profil général du dataset ;
+- `scoring.py` calcule un score qualité simple et explicable ;
+- `reporting.py` génère les rapports JSON, Markdown et HTML ;
 - `export.py` centralise les exports CSV.
 
 Le notebook reste la trace exploratoire complète. Le package `src/quality_analysis/` contient uniquement la partie stabilisée et testable.
@@ -98,13 +102,34 @@ Le notebook et les modules couvrent plusieurs angles :
 
 Aucun résultat n'est inventé dans la documentation : les chiffres doivent être reconstruits à partir des données locales.
 
+## Rapport qualité
+
+Le projet peut générer un rapport d'audit qualité reproductible :
+
+```bash
+python scripts/generate_quality_report.py
+```
+
+Le script charge en priorité `data/processed/openfoodfacts-cleaned.csv` si le fichier existe localement. Sinon, il utilise l'échantillon versionné `data/sample/openfoodfacts-cleaned-sample.csv`.
+
+Les sorties générées sont :
+
+- `reports/quality_report.json` : structure exploitable par une future interface ;
+- `reports/quality_report.md` : synthèse lisible dans GitHub ;
+- `reports/quality_report.html` : version statique consultable localement.
+
+Le score qualité est volontairement simple. Il combine complétude, colonnes attendues, bornes nutritionnelles, doublons et cohérence des Nutri-Grades. Il sert au pilotage technique du nettoyage, pas à une validation scientifique ou réglementaire.
+
 ## Données générées
 
 Fichiers locaux attendus ou générés :
 
 - `data/raw/openfoodfacts-products.tsv` : dataset brut, non versionné ;
 - `data/processed/openfoodfacts-cleaned.csv` : dataset nettoyé, non versionné ;
-- `data/sample/openfoodfacts-cleaned-sample.csv` : échantillon léger versionné.
+- `data/sample/openfoodfacts-cleaned-sample.csv` : échantillon léger versionné ;
+- `reports/quality_report.json` : rapport qualité structuré ;
+- `reports/quality_report.md` : rapport qualité Markdown ;
+- `reports/quality_report.html` : rapport qualité HTML.
 
 ## Installation locale
 
@@ -128,6 +153,12 @@ Reconstruire l'échantillon versionné depuis le nettoyé local :
 python scripts/build_sample.py
 ```
 
+Générer le rapport qualité :
+
+```bash
+python scripts/generate_quality_report.py
+```
+
 Ouvrir le notebook :
 
 ```bash
@@ -149,7 +180,8 @@ Les tests ne dépendent pas du dataset complet. Ils couvrent :
 - imputation médiane ;
 - distribution des Nutri-Grades ;
 - rapports de colonnes attendues ;
-- ANOVA et PCA sur jeux fictifs.
+- ANOVA et PCA sur jeux fictifs ;
+- profil dataset, score qualité et génération de rapport.
 
 ## Limites actuelles
 
@@ -160,7 +192,7 @@ Les tests ne dépendent pas du dataset complet. Ils couvrent :
 
 ## Améliorations possibles
 
-- Ajouter un rapport HTML statique de qualité des données.
+- Ajouter une interface Streamlit locale lisant `reports/quality_report.json`.
 - Générer un tableau de synthèse des règles appliquées.
 - Ajouter des tests de non-régression sur un échantillon contrôlé.
 - Extraire davantage de visualisations du notebook vers des fonctions réutilisables.

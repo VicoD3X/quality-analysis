@@ -8,6 +8,11 @@ RAW_DATA_PATH = DATA_DIR / "raw" / "openfoodfacts-products.tsv"
 CLEAN_DATA_PATH = DATA_DIR / "processed" / "openfoodfacts-cleaned.csv"
 SAMPLE_DATA_PATH = DATA_DIR / "sample" / "openfoodfacts-cleaned-sample.csv"
 
+REPORTS_DIR = PROJECT_ROOT / "reports"
+QUALITY_REPORT_JSON_PATH = REPORTS_DIR / "quality_report.json"
+QUALITY_REPORT_MD_PATH = REPORTS_DIR / "quality_report.md"
+QUALITY_REPORT_HTML_PATH = REPORTS_DIR / "quality_report.html"
+
 EXPECTED_RAW_SEPARATOR = "\t"
 GRADE_ORDER = ["a", "b", "c", "d", "e"]
 

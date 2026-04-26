@@ -1,0 +1,426 @@
+{
+  "metadata": {
+    "generated_at": "2026-04-26T03:55:57+00:00",
+    "source_path": "data/processed/openfoodfacts-cleaned.csv",
+    "report_version": "1.0"
+  },
+  "dataset_profile": {
+    "row_count": 115804,
+    "column_count": 30,
+    "global_missing_rate": 0.0,
+    "duplicate_count": 44,
+    "duplicate_rate": 0.0003799523332527374,
+    "numeric_columns": [
+      "created_t",
+      "last_modified_t",
+      "additives_n",
+      "energy_100g",
+      "fat_100g",
+      "saturated-fat_100g",
+      "carbohydrates_100g",
+      "sugars_100g",
+      "fiber_100g",
+      "proteins_100g",
+      "salt_100g",
+      "sodium_100g",
+      "nutrition-score-fr_100g"
+    ],
+    "categorical_columns": [
+      "code",
+      "creator",
+      "created_datetime",
+      "last_modified_datetime",
+      "product_name",
+      "brands",
+      "brands_tags",
+      "countries",
+      "countries_tags",
+      "countries_fr",
+      "ingredients_text",
+      "serving_size",
+      "additives",
+      "nutrition_grade_fr",
+      "states",
+      "states_tags",
+      "states_fr"
+    ],
+    "nutrition_grade_distribution": [
+      {
+        "grade": "a",
+        "count": 26253,
+        "rate": 0.22670201374736623
+      },
+      {
+        "grade": "b",
+        "count": 24311,
+        "rate": 0.2099322994024386
+      },
+      {
+        "grade": "c",
+        "count": 25622,
+        "rate": 0.22125315187730993
+      },
+      {
+        "grade": "d",
+        "count": 26410,
+        "rate": 0.22805775275465442
+      },
+      {
+        "grade": "e",
+        "count": 13208,
+        "rate": 0.1140547822182308
+      }
+    ]
+  },
+  "missing_values": {
+    "global_missing_rate": 0.0,
+    "top_columns": [
+      {
+        "column": "code",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "creator",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "created_t",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "created_datetime",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "last_modified_t",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "last_modified_datetime",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "product_name",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "brands",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "brands_tags",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "countries",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "countries_tags",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "countries_fr",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "ingredients_text",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "serving_size",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "additives_n",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "additives",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "nutrition_grade_fr",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "states",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "states_tags",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      },
+      {
+        "column": "states_fr",
+        "missing_count": 0,
+        "missing_rate": 0.0
+      }
+    ]
+  },
+  "required_columns": {
+    "present": [
+      "code",
+      "product_name",
+      "brands",
+      "countries_fr",
+      "ingredients_text",
+      "additives_n",
+      "nutrition_grade_fr",
+      "energy_100g",
+      "fat_100g",
+      "saturated-fat_100g",
+      "carbohydrates_100g",
+      "sugars_100g",
+      "fiber_100g",
+      "proteins_100g",
+      "salt_100g",
+      "sodium_100g",
+      "nutrition-score-fr_100g"
+    ],
+    "missing": []
+  },
+  "duplicate_rate": {
+    "subset": [
+      "code"
+    ],
+    "duplicate_count": 44,
+    "duplicate_rate": 0.0003799523332527374
+  },
+  "numeric_bounds": [
+    {
+      "column": "energy_100g",
+      "lower_bound": 0,
+      "upper_bound": 3700,
+      "invalid_count": 0,
+      "invalid_rate": 0.0
+    },
+    {
+      "column": "fat_100g",
+      "lower_bound": 0,
+      "upper_bound": 100,
+      "invalid_count": 0,
+      "invalid_rate": 0.0
+    },
+    {
+      "column": "saturated-fat_100g",
+      "lower_bound": 0,
+      "upper_bound": 100,
+      "invalid_count": 0,
+      "invalid_rate": 0.0
+    },
+    {
+      "column": "carbohydrates_100g",
+      "lower_bound": 0,
+      "upper_bound": 100,
+      "invalid_count": 1,
+      "invalid_rate": 8.635280301198577e-06
+    },
+    {
+      "column": "sugars_100g",
+      "lower_bound": 0,
+      "upper_bound": 100,
+      "invalid_count": 4,
+      "invalid_rate": 3.454112120479431e-05
+    },
+    {
+      "column": "fiber_100g",
+      "lower_bound": 0,
+      "upper_bound": 100,
+      "invalid_count": 0,
+      "invalid_rate": 0.0
+    },
+    {
+      "column": "proteins_100g",
+      "lower_bound": 0,
+      "upper_bound": 100,
+      "invalid_count": 1,
+      "invalid_rate": 8.635280301198577e-06
+    },
+    {
+      "column": "salt_100g",
+      "lower_bound": 0,
+      "upper_bound": 100,
+      "invalid_count": 0,
+      "invalid_rate": 0.0
+    },
+    {
+      "column": "sodium_100g",
+      "lower_bound": 0,
+      "upper_bound": 40,
+      "invalid_count": 0,
+      "invalid_rate": 0.0
+    },
+    {
+      "column": "nutrition-score-fr_100g",
+      "lower_bound": -15,
+      "upper_bound": 40,
+      "invalid_count": 0,
+      "invalid_rate": 0.0
+    }
+  ],
+  "nutrition_grade_distribution": [
+    {
+      "grade": "a",
+      "count": 26253,
+      "rate": 0.22670201374736623
+    },
+    {
+      "grade": "b",
+      "count": 24311,
+      "rate": 0.2099322994024386
+    },
+    {
+      "grade": "c",
+      "count": 25622,
+      "rate": 0.22125315187730993
+    },
+    {
+      "grade": "d",
+      "count": 26410,
+      "rate": 0.22805775275465442
+    },
+    {
+      "grade": "e",
+      "count": 13208,
+      "rate": 0.1140547822182308
+    }
+  ],
+  "nutrient_summary_by_grade": [
+    {
+      "nutrition_grade_fr": "a",
+      "additives_n": 0.96,
+      "energy_100g": 636.07,
+      "fat_100g": 2.17,
+      "saturated-fat_100g": 0.34,
+      "carbohydrates_100g": 26.04,
+      "sugars_100g": 3.43,
+      "fiber_100g": 2.88,
+      "proteins_100g": 6.86,
+      "salt_100g": 0.34,
+      "sodium_100g": 0.14,
+      "nutrition-score-fr_100g": -3.36
+    },
+    {
+      "nutrition_grade_fr": "b",
+      "additives_n": 1.46,
+      "energy_100g": 454.34,
+      "fat_100g": 2.94,
+      "saturated-fat_100g": 0.7,
+      "carbohydrates_100g": 16.62,
+      "sugars_100g": 5.28,
+      "fiber_100g": 1.31,
+      "proteins_100g": 4.03,
+      "salt_100g": 0.53,
+      "sodium_100g": 0.21,
+      "nutrition-score-fr_100g": 0.93
+    },
+    {
+      "nutrition_grade_fr": "c",
+      "additives_n": 1.82,
+      "energy_100g": 927.5,
+      "fat_100g": 8.17,
+      "saturated-fat_100g": 1.86,
+      "carbohydrates_100g": 31.25,
+      "sugars_100g": 10.13,
+      "fiber_100g": 2.11,
+      "proteins_100g": 5.73,
+      "salt_100g": 0.91,
+      "sodium_100g": 0.36,
+      "nutrition-score-fr_100g": 6.1
+    },
+    {
+      "nutrition_grade_fr": "d",
+      "additives_n": 2.23,
+      "energy_100g": 1452.19,
+      "fat_100g": 17.42,
+      "saturated-fat_100g": 5.44,
+      "carbohydrates_100g": 40.71,
+      "sugars_100g": 17.55,
+      "fiber_100g": 2.13,
+      "proteins_100g": 7.44,
+      "salt_100g": 1.07,
+      "sodium_100g": 0.42,
+      "nutrition-score-fr_100g": 13.99
+    },
+    {
+      "nutrition_grade_fr": "e",
+      "additives_n": 2.41,
+      "energy_100g": 1721.67,
+      "fat_100g": 22.39,
+      "saturated-fat_100g": 9.88,
+      "carbohydrates_100g": 46.53,
+      "sugars_100g": 26.71,
+      "fiber_100g": 1.48,
+      "proteins_100g": 6.5,
+      "salt_100g": 1.08,
+      "sodium_100g": 0.43,
+      "nutrition-score-fr_100g": 21.29
+    }
+  ],
+  "quality_score": {
+    "score": 99.99,
+    "dimensions": {
+      "completeness": 100.0,
+      "required_columns": 100.0,
+      "numeric_bounds": 100.0,
+      "duplicates": 99.96,
+      "nutrition_grades": 100.0
+    },
+    "weights": {
+      "completeness": 0.3,
+      "required_columns": 0.2,
+      "numeric_bounds": 0.2,
+      "duplicates": 0.15,
+      "nutrition_grades": 0.15
+    },
+    "interpretation": "Score heuristique entre 0 et 100 pour suivre la qualite technique du dataset. Il ne constitue pas une validation scientifique."
+  },
+  "alerts": [
+    {
+      "level": "medium",
+      "category": "numeric_bounds",
+      "message": "Colonne 'carbohydrates_100g' : 1 valeur(s) hors bornes nutritionnelles."
+    },
+    {
+      "level": "medium",
+      "category": "numeric_bounds",
+      "message": "Colonne 'sugars_100g' : 4 valeur(s) hors bornes nutritionnelles."
+    },
+    {
+      "level": "medium",
+      "category": "numeric_bounds",
+      "message": "Colonne 'proteins_100g' : 1 valeur(s) hors bornes nutritionnelles."
+    },
+    {
+      "level": "medium",
+      "category": "duplicates",
+      "message": "44 doublon(s) détecté(s) (<0.1%)."
+    }
+  ],
+  "limitations": [
+    "Le score qualité est heuristique et non réglementaire.",
+    "Les bornes nutritionnelles restent des contrôles techniques simples.",
+    "Le rapport dépend du fichier local utilisé au moment de la génération.",
+    "L'échantillon versionné sert à la démonstration, pas à une conclusion métier."
+  ]
+}
